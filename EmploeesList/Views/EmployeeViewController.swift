@@ -8,7 +8,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        connectionLabel.isHidden = true
         initViewModel()
         tableView.register(UINib(nibName: "EmployeeTableViewCell", bundle: nil), forCellReuseIdentifier: EmployeeTableViewCell.id)
         tableView.delegate = self

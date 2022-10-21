@@ -7,7 +7,9 @@ class EmployeesViewModel {
     private let monitor = NWPathMonitor()
     var connection = false {
         didSet {
-            showConnectionLabel?()
+            if oldValue != connection {
+                showConnectionLabel?()
+            }
         }
     }
     var employeesList = [Employee]() {
