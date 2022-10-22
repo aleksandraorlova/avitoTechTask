@@ -15,8 +15,15 @@ class ViewController: UIViewController {
     }
     
     private func initViewModel() {
+        viewModel.getStoredData()
+        viewModel.reloadTableView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+
         viewModel.showConnectionLabel = { [self] in
-            if self.viewModel.connection && self.viewModel.employeesList.isEmpty {
+            if self.viewModel.employeesList.isEmpty {
                 self.viewModel.getData()
             }
 
@@ -24,13 +31,8 @@ class ViewController: UIViewController {
                 self.changeConnectionLabel()
             }
         }
-
+    
         viewModel.checkConnection()
-        viewModel.reloadTableView = { [weak self] in
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-        }
     }
     
     private func changeConnectionLabel() {
